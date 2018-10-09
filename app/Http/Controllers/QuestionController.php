@@ -87,7 +87,12 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::findOrFail($id);
+
+        if($question->user->id != Auth::id())
+        {
+            return abort(403);
+        }
     }
 
     /**
